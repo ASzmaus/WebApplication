@@ -1,4 +1,5 @@
-WebApplication
+#WebApplication
+
 Application for sport clubs.
 
 The system will be used to manage one or many clubs that offer one or more sport disciplines. The group is assigned to a specific discipline.
