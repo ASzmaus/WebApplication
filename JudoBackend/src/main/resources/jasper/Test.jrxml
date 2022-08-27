@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Test" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f806351b-73a8-4aac-861e-8d01279dc05e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="last_name" class="java.lang.String"/>
+	<parameter name="date_of_agreement" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{date_of_agreement}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="city" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{city}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="street" class="java.lang.String"/>
+	<parameter name="house_no" class="java.lang.String"/>
+	<parameter name="postcode" class="java.lang.String"/>
+	<parameter name="date_from" class="java.lang.String"/>
+	<parameter name="date_to" class="java.lang.String"/>
+	<parameter name="gross_amount" class="java.lang.String"/>
+	<parameter name="company_name" class="java.lang.String"/>
+	<parameter name="company_address" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{company_address}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="first_name" class="java.lang.String"/>
+	<parameter name="agreement_place" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="0" width="271" height="30" uuid="630de304-98f6-44f9-9d0c-605d335d74a8"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRACT - COACH]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="253" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="20" uuid="028b046f-66cf-4759-a129-b44eb763ce27"/>
+				<text><![CDATA[Agreemnet concluded on  ]]></text>
+			</staticText>
+			<textField evaluationTime="Master">
+				<reportElement x="80" y="130" width="100" height="20" uuid="9dcc44a3-e87f-41a9-b58f-b9826ec62198"/>
+				<textFieldExpression><![CDATA[$P{last_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="120" height="19" uuid="5c38d4c8-a407-40ea-9211-48b622c72a58"/>
+				<textFieldExpression><![CDATA[$P{date_of_agreement}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="255" y="2" width="20" height="17" uuid="3ecf15c5-c161-4639-8fcc-13825e0d75a6"/>
+				<text><![CDATA[in]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="110" height="19" uuid="dc2b0489-1aa5-4d6d-97f2-00bd9fa2e65d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[and the Contractor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="160" width="131" height="17" uuid="5c701eca-a2be-48ea-9a52-846c481833a4"/>
+				<textFieldExpression><![CDATA[$P{street}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="160" width="50" height="17" uuid="2dda9d55-f6b0-479e-bfc8-0d371dc182b4"/>
+				<text><![CDATA[Street]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="190" width="61" height="21" uuid="350bfcf6-3bd9-4bc4-9fc8-b8cdd1b26c27"/>
+				<text><![CDATA[House no.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="190" width="131" height="21" uuid="85aa6377-e58f-4f43-951f-17a9b17e2bd4"/>
+				<textFieldExpression><![CDATA[$P{house_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="220" width="61" height="13" uuid="ab6dcfc7-420e-4232-9479-add8fe2575f8"/>
+				<textFieldExpression><![CDATA[$P{city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="216" width="131" height="17" uuid="f333f900-ea9e-4612-b460-f8482d959c35"/>
+				<textFieldExpression><![CDATA[$P{city}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="240" width="61" height="13" uuid="68143fd3-0b94-4edd-b235-24c98c8d0d67"/>
+				<text><![CDATA[PostCode]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="240" width="131" height="13" uuid="91e08be2-88c1-41ad-93e4-5f5d9af44656"/>
+				<textFieldExpression><![CDATA[$P{postcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="270" height="21" uuid="5569665c-ca82-4223-a0c1-7ec2544f328e"/>
+				<textFieldExpression><![CDATA[$P{company_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="30" width="81" height="21" uuid="a7272b81-7020-41f6-9bdb-fddaf6b00d58"/>
+				<text><![CDATA[at  the address ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="60" width="400" height="20" uuid="114f004b-bb07-43f8-afe8-f46bfab891d3"/>
+				<textFieldExpression><![CDATA[$P{company_address}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="130" width="71" height="20" uuid="90a7c33b-97dc-4840-b9f5-42ccf824d019"/>
+				<text><![CDATA[Last name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="130" width="111" height="21" uuid="048d475a-87a1-48e0-bb99-f9d52f2d794e"/>
+				<text><![CDATA[First name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="130" width="141" height="21" uuid="1077faba-f4ea-4b75-a457-7e24088f1185"/>
+				<textFieldExpression><![CDATA[$P{first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="110" height="17" uuid="fe8f4376-d0b8-4dfa-81bb-8430eca73373"/>
+				<textFieldExpression><![CDATA[$P{agreement_place}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="420" y="0" width="86" height="20" uuid="3355ba74-93e1-4dff-9fbe-7e954dd301f2"/>
+				<text><![CDATA[between ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="165" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="550" height="50" uuid="a5d53110-5329-4fbf-9b50-ea02711d11a0"/>
+				<text><![CDATA[Subject of the contract:
+Conducting sports training: training classes, consultations in clubs, preparation of documentation for groupings and consultations, guidelines for the work of trainers and instructors.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="210" height="16" uuid="f7e44568-649d-4fe3-b3af-96c77fcdf4d2"/>
+				<text><![CDATA[The contract is concluded for the period from ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="80" width="70" height="16" uuid="3fd2fd40-1cca-4fad-993c-39394b996712"/>
+				<textFieldExpression><![CDATA[$P{date_from}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="80" width="20" height="16" uuid="cd27d07f-2b6e-4af5-9f67-4ddf287a9211"/>
+				<text><![CDATA[to]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="77" width="80" height="16" uuid="e1cf05b1-cc14-4099-98d5-0b324c306f4d"/>
+				<textFieldExpression><![CDATA[$P{date_to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="120" width="380" height="16" uuid="9ec1868d-35b1-4b52-8b54-a19947b0d550"/>
+				<text><![CDATA[The parties agree on the gross remuneration of the works performed in the amount of
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="80" width="5" height="11" uuid="749702e7-e579-48de-b996-4662a931047d"/>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="120" width="100" height="16" uuid="83eb4c38-24ad-4d8f-b3e9-a8b67ce73f96"/>
+				<textFieldExpression><![CDATA[$P{gross_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="490" y="120" width="54" height="16" uuid="2874836d-bb27-4e39-beeb-2c7c70d4ec67"/>
+				<text><![CDATA[PLN.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="4" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="490" height="70" uuid="9668ebb1-3011-412e-96e4-b91042769681"/>
+				<text><![CDATA[City ......................., date ....................................                                                                                                           I accept the above order for execution                                                                                                                                                                                                                                                                       ..................................................................................       .........................................................................
+Signatures of persons representing the Principal       Signature of the Contractor]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

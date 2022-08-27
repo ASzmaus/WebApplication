@@ -1,0 +1,323 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Agnieszka Szmaus" id="01">
+	<sql><![CDATA[
+
+CREATE SCHEMA administration;
+CREATE SCHEMA cms;
+
+CREATE TABLE cms.page_static
+(
+page_static_id serial NOT NULL,
+inner_name varchar(256) NOT NULL,
+display bool NOT NULL,
+sequence integer NOT NULL,
+title varchar(256) NOT NULL,
+content text,
+display_from date,
+display_to date
+);
+
+ALTER TABLE cms.page_static ADD CONSTRAINT page_static_pk PRIMARY KEY (
+page_static_id
+);
+
+
+	CREATE TABLE public.club
+	(
+	club_id serial NOT NULL,
+	name varchar(256) NOT NULL,
+	domain varchar(256),
+	phone_number varchar(256),
+	address_email varchar(256),
+	deleted bool NOT NULL
+	);
+
+	ALTER TABLE public.club ADD CONSTRAINT club_pk PRIMARY KEY (
+	club_id
+	);
+
+	CREATE TABLE discipline
+	(
+	discipline_id serial NOT NULL,
+	name varchar(256) NOT NULL,
+	description varchar(256) NOT NULL
+	);
+
+	ALTER TABLE discipline ADD CONSTRAINT discipline_pk PRIMARY KEY (
+	discipline_id
+	);
+
+	CREATE TABLE discipline_club
+	(
+	discipline_club_id serial NOT NULL,
+	club_id integer NOT NULL,
+	discipline_id integer NOT NULL
+	);
+
+	ALTER TABLE discipline_club ADD CONSTRAINT discipline_club_pk PRIMARY KEY (
+	discipline_club_id
+	);
+
+	ALTER TABLE discipline_club ADD CONSTRAINT discipline_club_fk2 FOREIGN KEY (
+	discipline_id
+	)REFERENCES discipline (
+	discipline_id
+	) ON UPDATE CASCADE;
+
+	ALTER TABLE discipline_club ADD CONSTRAINT discipline_club_fk3 FOREIGN KEY (
+	club_id
+	)REFERENCES public.club (
+	club_id
+	) ON UPDATE CASCADE;
+
+
+	CREATE TABLE location
+	(
+	location_id serial NOT NULL,
+	street varchar(256) NOT NULL,
+	house_number integer NOT NULL,
+	city varchar(100) NOT NULL,
+	postcode varchar(6) NOT NULL,
+	description varchar(256) NOT NULL
+	);
+
+	ALTER TABLE location ADD CONSTRAINT location_pk PRIMARY KEY (location_id);
+
+	CREATE TABLE club_location
+	(
+	club_location_id serial NOT NULL,
+	club_id integer NOT NULL,
+	location_id integer NOT NULL
+	);
+
+	ALTER TABLE club_location ADD CONSTRAINT club_location_pk PRIMARY KEY (
+	club_location_id
+	);
+
+	ALTER TABLE club_location ADD CONSTRAINT club_location_fk2 FOREIGN KEY (
+	location_id
+	)REFERENCES location (
+	location_id
+	) ON UPDATE CASCADE;
+
+	ALTER TABLE club_location ADD CONSTRAINT club_location_fk3 FOREIGN KEY (
+	club_id
+	)REFERENCES public.club (
+	club_id
+	) ON UPDATE CASCADE;
+
+
+	CREATE TABLE work_group
+	(
+	work_group_id serial NOT NULL,
+	name varchar(256) NOT NULL,
+	discipline_id integer NOT NULL,
+	club_id integer NOT NULL,
+	limit_of_places integer NOT NULL,
+	starting_date date,
+	end_date date
+	);
+	ALTER TABLE work_group ADD CONSTRAINT work_group_pk PRIMARY KEY(
+	work_group_id
+	);
+
+	ALTER TABLE work_group ADD CONSTRAINT work_group_fk3 FOREIGN KEY (
+	discipline_id
+	)REFERENCES discipline (
+	discipline_id
+	) ON UPDATE CASCADE;
+
+
+	CREATE TABLE administration.role
+	(
+	role_id char(1) NOT NULL,
+	name varchar(256) NOT NULL
+	);
+
+	ALTER TABLE administration.role ADD CONSTRAINT role_pk PRIMARY KEY (
+	role_id
+	);
+
+	CREATE TABLE administration.user
+	(
+	user_id serial NOT NULL,
+	email varchar(64) NOT NULL,
+	password varchar(128) NOT NULL,
+	role_id char(1) NOT NULL,
+	active bool NOT NULL,
+	club_id integer,
+	deleted bool NOT NULL,
+	activation_token varchar(256),
+	activation_token_expiration_date timestamp,
+	reminder_token varchar(256),
+	reminder_token_expiration_date timestamp,
+	beneficiary_id integer
+	);
+
+	ALTER TABLE administration.user ADD CONSTRAINT user_pk PRIMARY KEY (
+	user_id
+	);
+
+	ALTER TABLE administration.user ADD CONSTRAINT user_role_fk0 FOREIGN KEY (
+	role_id
+	)REFERENCES administration.role (
+	role_id
+	) ON UPDATE CASCADE;
+	ALTER TABLE administration.user ADD CONSTRAINT user_club_fk2 FOREIGN KEY (
+	club_id
+	)REFERENCES public.club (
+	club_id
+	) ON UPDATE CASCADE;
+
+	CREATE INDEX user_role_id_idx ON administration.user(role_id);
+	CREATE INDEX user_club_id_idx ON administration.user(club_id);
+
+	]]>
+</sql>
+		</changeSet>
+
+
+	<changeSet author="Agnieszka Szmaus" id="17.8">
+		<sql><![CDATA[
+ALTER TABLE work_group ADD club_location_id integer NOT NULL;
+ALTER TABLE work_group ADD monthly_cost decimal(10,2) NOT NULL;
+ALTER TABLE work_group ADD bank_account_number varchar(34) NOT NULL;
+ALTER TABLE work_group ADD CONSTRAINT club_location_id_fk4 FOREIGN KEY (club_location_id) REFERENCES club_location (club_location_id) ON UPDATE CASCADE;
+		]]>
+		</sql>
+	</changeSet>
+
+	<changeSet author="Agnieszka Szmaus" id="13">
+		<sql><![CDATA[
+ALTER TABLE administration.user ADD first_name varchar(50);
+ALTER TABLE administration.user ADD last_name varchar(50);
+ALTER TABLE administration.user ADD position varchar(200);
+ALTER TABLE administration.user ADD birthdate date;
+      ]]>
+		</sql>
+	</changeSet>
+
+	<changeSet author="Agnieszka Szmaus" id="20">
+		<sql><![CDATA[
+		CREATE TABLE public.work_group_user(
+		work_group_user_id serial NOT NULL,
+		work_group_id integer NOT NULL,
+		user_id integer NOT NULL
+		);
+		ALTER TABLE public.work_group_user ADD CONSTRAINT work_group_user_pk PRIMARY KEY(
+		work_group_user_id);
+
+		ALTER TABLE public.work_group_user ADD CONSTRAINT work_group_user_fk0 FOREIGN KEY(
+		work_group_id) REFERENCES public.work_group (work_group_id) ON UPDATE CASCADE;
+
+		ALTER TABLE public.work_group_user ADD CONSTRAINT work_group_user_fk1 FOREIGN KEY(
+		user_id) REFERENCES  administration.user (user_id) ON UPDATE CASCADE;
+
+   ]]>
+		</sql>
+	</changeSet>
+
+	<changeSet author="Agnieszka Szmaus" id="19">
+		<sql><![CDATA[
+
+	CREATE TABLE public.time_slot(
+			time_slot_id serial NOT NULL,
+			which_day date,
+			lesson_start time NOT NULL,
+			lesson_end time NOT NULL,
+			which_day_of_week int,
+			valid_from date NOT NULL,
+			valid_to date NOT NULL,
+			work_group_id integer NOT NULL,
+			user_id integer NOT NULL,
+			club_location_optional varchar(256)
+		);
+
+		ALTER TABLE public.time_slot ADD CONSTRAINT time_slot_pk PRIMARY KEY(
+		time_slot_id);
+
+		ALTER TABLE public.time_slot ADD CONSTRAINT work_group_fk4 FOREIGN KEY(
+		work_group_id) REFERENCES public.work_group (work_group_id) ON UPDATE CASCADE;
+
+		ALTER TABLE public.time_slot ADD CONSTRAINT user_fk5 FOREIGN KEY(
+		user_id) REFERENCES administration.user (user_id) ON UPDATE CASCADE;
+   ]]>
+		</sql>
+	</changeSet>
+
+	<changeSet author="Agnieszka Szmaus" id="22.1">
+		<sql><![CDATA[
+
+	CREATE TABLE public.holiday(
+			holiday_id serial NOT NULL,
+			holiday_date date
+	);
+
+		ALTER TABLE public.holiday ADD CONSTRAINT holiday_pk PRIMARY KEY(
+		holiday_id);
+   ]]>
+		</sql>
+	</changeSet>
+
+	<changeSet author="Agnieszka Szmaus" id="23">
+		<sql><![CDATA[
+
+		CREATE TABLE administration.document(
+			document_id serial NOT NULL,
+			name varchar(100) NOT NULL,
+			description varchar(300),
+			content BYTEA
+		);
+		ALTER TABLE administration.document ADD constraint document_pk PRIMARY KEY(document_id);
+
+		CREATE TABLE administration.agreement(
+   			agreement_id serial NOT NULL,
+     		name varchar(20) NOT NULL,
+      		type varchar(50) NOT NULL,
+      		agreement_date date NOT NULL,
+      		date_from date NOT NULL,
+   			date_to date NOT NULL,
+        	gross_amount decimal(10,2) NOT NULL,
+      		user_id integer NOT NULL,
+      		content BYTEA,
+      		document_id integer NOT NULL
+      	);
+		ALTER TABLE administration.agreement ADD CONSTRAINT agreement_pk PRIMARY KEY(agreement_id);
+		ALTER TABLE administration.agreement ADD CONSTRAINT agreement_fk0 FOREIGN KEY(user_id) REFERENCES administration.user (user_id) ON UPDATE CASCADE;
+		ALTER TABLE administration.agreement ADD CONSTRAINT agreement_fk1 FOREIGN KEY(document_id) REFERENCES administration.document (document_id) ON UPDATE CASCADE;
+
+		CREATE TABLE administration.user_address
+		(
+			user_address_id serial NOT NULL,
+			street varchar(256) NOT NULL,
+			house_number integer NOT NULL,
+			city varchar(100) NOT NULL,
+			postcode varchar(6) NOT NULL,
+			user_id integer NOT NULL
+		);
+		ALTER TABLE administration.user_address ADD CONSTRAINT user_address_pk PRIMARY KEY(user_address_id);
+		ALTER TABLE administration.user_address ADD CONSTRAINT user_address_fk0 FOREIGN KEY(user_id) REFERENCES administration.user (user_id) ON UPDATE CASCADE;
+
+		CREATE TABLE administration.outstanding_debts
+	(
+			debts_id serial NOT NULL,
+  			payment_deadline date,
+  			user_id integer NOT NULL,
+  			amount_of_debt decimal(10,2),
+   			payment_date date,
+   			paid_amount decimal(10,2)
+
+  	);
+
+		ALTER TABLE administration.outstanding_debts ADD CONSTRAINT outstanding_debts_pk PRIMARY KEY(debts_id);
+		ALTER TABLE administration.outstanding_debts ADD CONSTRAINT outstanding_debts_fk1 FOREIGN KEY(user_id) REFERENCES administration.user (user_id) ON UPDATE CASCADE;
+
+	  ]]>
+		</sql>
+	</changeSet>
+</databaseChangeLog>

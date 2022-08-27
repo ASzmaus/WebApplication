@@ -1,0 +1,25 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Agnieszka Szmaus" id="02">
+		<insert tableName="role" schemaName="administration">
+			<column name="role_id">a</column>
+			<column name="name">Administrator</column>
+		</insert>
+		<insert tableName="role" schemaName="administration">
+			<column name="role_id">o</column>
+			<column name="name">Back-office</column>
+		</insert>
+		<insert tableName="role" schemaName="administration">
+			<column name="role_id">s</column>
+			<column name="name">Staff</column>
+		</insert>
+		<insert tableName="role" schemaName="administration">
+			<column name="role_id">p</column>
+			<column name="name">Parent</column>
+		</insert>
+	</changeSet>
+</databaseChangeLog>

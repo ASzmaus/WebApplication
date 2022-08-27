@@ -1,0 +1,194 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Agnieszka Szmaus" id="02-dev" context="dev" dbms="postgresql">
+		<insert tableName="discipline" schemaName="public">
+			<column name="discipline_id">1</column>
+			<column name="name">aikido</column>
+			<column name="description">japońska sztuka walki</column>
+		</insert>
+		<insert tableName="discipline" schemaName="public">
+			<column name="discipline_id">2</column>
+			<column name="name">judo</column>
+			<column name="description">sztuka walki stworzona w Japonii jako sport z jūjutsu</column>
+		</insert>
+		<insert tableName="discipline" schemaName="public">
+			<column name="discipline_id">3</column>
+			<column name="name">karate</column>
+			<column name="description">sztuka walki stworzona w Japonii</column>
+		</insert>
+		<insert tableName="discipline" schemaName="public">
+			<column name="discipline_id">4</column>
+			<column name="name">taekwondo</column>
+			<column name="description">sztuka walki stworzona w Japonii</column>
+		</insert>
+		<insert tableName="discipline_club" schemaName="public">
+			<column name="club_id">1</column>
+			<column name="discipline_id">1</column>
+		</insert>
+		<insert tableName="discipline_club" schemaName="public">
+			<column name="club_id">2</column>
+			<column name="discipline_id">2</column>
+		</insert>
+		<insert tableName="discipline_club" schemaName="public">
+			<column name="club_id">3</column>
+			<column name="discipline_id">3</column>
+		</insert>
+		<insert tableName="location" schemaName="public">
+			<column name="street">Miodowa</column>
+			<column name="house_number">38</column>
+			<column name="city">Warsaw</column>
+			<column name="postcode">02-421</column>
+			<column name="description">sala gimanstyczna</column>
+		</insert>
+		<insert tableName="location" schemaName="public">
+			<column name="street">Lawendowa</column>
+			<column name="house_number">3</column>
+			<column name="city">Warsaw</column>
+			<column name="postcode">08-423</column>
+			<column name="description">sala gimanstyczna</column>
+		</insert>
+		<insert tableName="location" schemaName="public">
+			<column name="street">Wrzosowa</column>
+			<column name="house_number">2</column>
+			<column name="city">Warsaw</column>
+			<column name="postcode">01-429</column>
+			<column name="description">sala gimanstyczna</column>
+		</insert>
+		<insert tableName="club_location" schemaName="public">
+			<column name="location_id">1</column>
+			<column name="club_id">1</column>
+		</insert>
+		<insert tableName="club_location" schemaName="public">
+			<column name="location_id">2</column>
+			<column name="club_id">2</column>
+		</insert>
+		<insert tableName="work_group" schemaName="public">
+			<column name="name">Red Group</column>
+			<column name="discipline_id">1</column>
+			<column name="club_id">2</column>
+			<column name="limit_of_places">30</column>
+			<column name="starting_date">2021-03-31</column>
+			<column name="end_date"></column>
+			<column name="club_location_id">1</column>
+			<column name="monthly_cost">80.00</column>
+			<column name="bank_account_number">PL27 2240 2004 0000 0000 3002 0135</column>
+		</insert>
+		<insert tableName="work_group" schemaName="public">
+			<column name="name">Black Group</column>
+			<column name="discipline_id">1</column>
+			<column name="club_id">2</column>
+			<column name="limit_of_places">30</column>
+			<column name="starting_date">2021-03-31</column>
+			<column name="end_date"></column>
+			<column name="club_location_id">1</column>
+			<column name="monthly_cost">80.00</column>
+			<column name="bank_account_number">PL27 2240 2004 0000 0000 3002 0136</column>
+		</insert>
+
+		<insert tableName="work_group_user" schemaName="public">
+			<column name="work_group_user_id">1</column>
+			<column name="work_group_id">2</column>
+			<column name="user_id">1</column>
+		</insert>
+		<insert tableName="work_group_user" schemaName="public">
+			<column name="work_group_user_id">2</column>
+			<column name="work_group_id">2</column>
+			<column name="user_id">6</column>
+		</insert>
+		<insert tableName="work_group_user" schemaName="public">
+			<column name="work_group_user_id">3</column>
+			<column name="work_group_id">2</column>
+			<column name="user_id">7</column>
+		</insert>
+
+		<insert tableName="time_slot" schemaName="public">
+			<column name="time_slot_id">1</column>
+			<column name="which_day">2021-10-01</column>
+			<column name="lesson_start"> 12:13</column>
+			<column name="lesson_end"> 13:13</column>
+			<column name="which_day_of_week">null</column>
+			<column name="valid_from">2021-06-01</column>
+			<column name="valid_to">2022-06-30</column>
+			<column name="work_group_id">1</column>
+			<column name="user_id">4</column>
+			<column name="club_location_optional">null</column>
+		</insert>
+
+		<insert tableName="time_slot" schemaName="public">
+			<column name="time_slot_id">2</column>
+			<column name="which_day">null</column>
+			<column name="lesson_start"> 12:13</column>
+			<column name="lesson_end"> 13:13</column>
+			<column name="which_day_of_week">1</column>
+			<column name="valid_from">2021-06-01</column>
+			<column name="valid_to">2022-06-30</column>
+			<column name="work_group_id">1</column>
+			<column name="user_id">4</column>
+			<column name="club_location_optional">null</column>
+		</insert>
+		<insert tableName="time_slot" schemaName="public">
+			<column name="time_slot_id">3</column>
+			<column name="which_day">2021-10-02</column>
+			<column name="lesson_start"> 12:13</column>
+			<column name="lesson_end"> 13:13</column>
+			<column name="which_day_of_week">null</column>
+			<column name="valid_from">2021-06-01</column>
+			<column name="valid_to">2022-06-30</column>
+			<column name="work_group_id">1</column>
+			<column name="user_id">4</column>
+			<column name="club_location_optional">null</column>
+		</insert>
+		<insert tableName="time_slot" schemaName="public">
+			<column name="time_slot_id">4</column>
+			<column name="which_day">2021-01-01</column>
+			<column name="lesson_start"> 12:13</column>
+			<column name="lesson_end"> 13:13</column>
+			<column name="which_day_of_week">null</column>
+			<column name="valid_from">2021-01-01</column>
+			<column name="valid_to">2022-06-30</column>
+			<column name="work_group_id">1</column>
+			<column name="user_id">4</column>
+			<column name="club_location_optional">null</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">1</column>
+			<column name="holiday_date">2021-01-01</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">2</column>
+			<column name="holiday_date">2021-01-06</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">3</column>
+			<column name="holiday_date">2021-05-01</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">4</column>
+			<column name="holiday_date">2021-05-03</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">5</column>
+			<column name="holiday_date">2021-08-15</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">6</column>
+			<column name="holiday_date">2021-11-01</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">7</column>
+			<column name="holiday_date">2021-11-11</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">8</column>
+			<column name="holiday_date">2021-12-24</column>
+		</insert>
+		<insert tableName="holiday" schemaName="public">
+			<column name="holiday_id">9</column>
+			<column name="holiday_date">2021-12-25</column>
+		</insert>
+		</changeSet>
+</databaseChangeLog>

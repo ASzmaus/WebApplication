@@ -1,0 +1,167 @@
+ <databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Agnieszka Szmaus" id="01-test" context="test">
+		<insert tableName="club" schemaName="public">
+			<column name="club_id">1</column>
+			<column name="name">Warszawski Club Aikido</column>
+			<column name="domain">pl</column>
+			<column name="phone_number">505505505</column>
+			<column name="address_email">judofrontend@gmail.com</column>
+			<column name="deleted">false</column>
+		</insert>
+		<insert tableName="club" schemaName="public">
+			<column name="club_id">2</column>
+			<column name="name">Akademia Judo w Warszawie</column>
+			<column name="domain">pl</column>
+			<column name="phone_number">505505505</column>
+			<column name="address_email">judofrontend@gmail.com</column>
+			<column name="deleted">false</column>
+		</insert>
+		<insert tableName="club" schemaName="public">
+			<column name="club_id">3</column>
+			<column name="name">Tekwondoo</column>
+			<column name="domain">pl</column>
+			<column name="phone_number">505505505</column>
+			<column name="address_email">judofrontend@gmail.com</column>
+			<column name="deleted">false</column>
+		</insert>
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">1</column>
+			<column name="email">judofrontend@gmail.com</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">a</column>
+			<column name="active">true</column>
+			<column name="club_id">2</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Adam</column>
+			<column name="last_name">Adamowski</column>
+			<column name="position">system administrator</column>
+			<column name="birthdate">1984-03-31</column>
+		</insert>
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">2</column>
+			<column name="email">judobackend@gmail.com</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">o</column>
+			<column name="active">true</column>
+			<column name="club_id">null</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Bartek</column>
+			<column name="last_name">Bartkowski</column>
+			<column name="position">owner of the entire website</column>
+			<column name="birthdate">1984-03-31</column>
+		</insert>
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">3</column>
+			<column name="email">test@test.pl</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">a</column>
+			<column name="active">true</column>
+			<column name="club_id">2</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Celina</column>
+			<column name="last_name">Lewandowska</column>
+			<column name="position">deputy admin</column>
+			<column name="birthdate">1984-05-31</column>
+		</insert>
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">4</column>
+			<column name="email">teststaff@test.pl</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">s</column>
+			<column name="active">true</column>
+			<column name="club_id">1</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Katarzyna</column>
+			<column name="last_name">Kowalska</column>
+			<column name="position">trainer</column>
+			<column name="birthdate">1984-07-31</column>
+		</insert>
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">5</column>
+			<column name="email">teststaffcoach@test.pl</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">s</column>
+			<column name="active">true</column>
+			<column name="club_id">1</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Michał</column>
+			<column name="last_name">Kowalski</column>
+			<column name="position">coach</column>
+			<column name="birthdate">1984-06-01</column>
+		</insert>
+
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">6</column>
+			<column name="email">a.sz@gmail.com</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">p</column>
+			<column name="active">true</column>
+			<column name="club_id">2</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Agnieszka</column>
+			<column name="last_name">Szmaus</column>
+			<column name="position">parent</column>
+			<column name="birthdate">1984-06-01</column>
+		</insert>
+
+		<insert tableName="user" schemaName="administration">
+			<column name="user_id">7</column>
+			<column name="email">aga.test@gmail.com</column>
+			<column name="password">$2a$12$9vGIN0akzQdKoBq1b1e2A.tl5S0CYRNN33K0gBPnAERmIXwI9Ysf.</column>
+			<column name="role_id">p</column>
+			<column name="active">true</column>
+			<column name="club_id">2</column>
+			<column name="deleted">false</column>
+			<column name="beneficiary_id">null</column>
+			<column name="first_name">Agnieszka</column>
+			<column name="last_name">Dobrowolski</column>
+			<column name="position">parent</column>
+			<column name="birthdate">1984-06-01</column>
+		</insert>
+
+		<insert tableName="document" schemaName="administration">
+			<column name="document_id" valueNumeric="1"/>
+			<column name="name" value="coach"/>
+			<column name="description" value="coach contract"/>
+			<column name="content" valueBlobFile="../../../jasper/Test.jrxml"/>
+		</insert>
+
+		<insert tableName="user_address" schemaName="administration">
+			<column name="user_address_id">1</column>
+			<column name="street">Miodowa</column>
+			<column name="house_number">38</column>
+			<column name="city">Warsaw</column>
+			<column name="postcode">02-421</column>
+			<column name="user_id">6</column>
+		</insert>
+
+		<insert tableName="outstanding_debts" schemaName="administration">
+			<column name="debts_id">4</column>
+			<column name="payment_deadline">2021-12-15</column>
+			<column name ="user_id">6</column>
+			<column name ="amount_of_debt">80.00</column>
+			<column name ="payment_date"></column>
+			<column name ="paid_amount">20.00</column>
+		</insert>
+		<insert tableName="outstanding_debts" schemaName="administration">
+			<column name="debts_id">3</column>
+			<column name="payment_deadline">2021-11-15</column>
+			<column name ="user_id">7</column>
+			<column name ="amount_of_debt">100.00</column>
+			<column name ="payment_date"></column>
+			<column name ="paid_amount"></column>
+		</insert>
+
+	 </changeSet>
+</databaseChangeLog>

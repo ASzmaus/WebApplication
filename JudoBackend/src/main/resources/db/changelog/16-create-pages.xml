@@ -1,0 +1,30 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet author="Agnieszka Szmaus" id="21"  context="!test">
+	<delete schemaName="cms" tableName="page_static">
+	</delete>
+		<insert schemaName="cms" tableName="page_static">
+			<column name="inner_name">About the program</column>
+			<column name="display" valueBoolean="true" />
+			<column name="sequence">1</column>
+			<column name="title">About the program</column>
+			<column name="content"><![CDATA[<p>The aim of the program is to access information about sports clubs, classes, hours of classes, contracts, amounts to be paid.</p>
+]]></column>
+		</insert>
+		<insert schemaName="cms" tableName="page_static">
+			<column name="inner_name">FAQ</column>
+			<column name="display" valueBoolean="true" />
+			<column name="sequence">2</column>
+			<column name="title">FAQ</column>
+			<column name="content"><![CDATA[<div class=”kra-faq”>
+<h2>Who can be a club participant?</h2>
+<p>The participant can be an adult as well as children.</p>
+</div>
+]]></column>
+		</insert>	
+	</changeSet>
+</databaseChangeLog>

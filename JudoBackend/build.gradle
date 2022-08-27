@@ -1,0 +1,129 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin")
+		classpath 'com.smartnews:jpa-entity-generator:0.99.8'
+		classpath 'org.postgresql:postgresql:42.2.12'
+	}
+}
+
+plugins {
+    id 'java-library'
+    id 'groovy-base'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+  }
+
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'org.springframework.boot'
+apply plugin: "eclipse"
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy','src/main/java']
+        }
+    }
+}
+repositories {
+    jcenter()
+    mavenCentral()
+}
+test {
+	useJUnitPlatform()
+	testLogging {
+	  events "passed", "skipped", "failed"
+	}
+    bootRun.configure {
+        systemProperty "spring.profiles.active", 'test'
+	}
+    maxHeapSize = '1G'
+	maxParallelForks = 3
+}
+
+task bootRunDev {
+    bootRun.configure {
+        systemProperty "spring.profiles.active", 'dev'
+	}
+}
+
+task bootRunDevDebug {
+	bootRun.configure {
+		systemProperty "spring.profiles.active", 'dev'
+	}
+}
+
+bootRunDev.finalizedBy bootRun
+
+dependencyManagement{
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR3"
+    }
+}
+dependencies {
+
+    implementation 'org.hibernate:hibernate-core:5.2.10.Final'
+    implementation 'org.hibernate:hibernate-entitymanager:5.2.10.Final'
+    implementation 'org.hibernate:hibernate-envers:5.2.10.Final'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+
+    implementation 'org.springframework:spring-messaging:5.3.15'
+    implementation "org.springframework.cloud:spring-cloud-starter-config"
+    compile "org.springframework.cloud:spring-cloud-starter-stream-rabbit"
+
+    implementation group: 'net.javacrumbs.shedlock', name: 'shedlock-spring', version: '2.4.0' //for scheduler
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
+	testImplementation 'org.codehaus.groovy:groovy-all:2.5.7'
+	testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	implementation "org.springframework.session:spring-session-core"
+    implementation "org.springframework.session:spring-session:1.3.5.RELEASE"
+
+    compile group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    implementation 'javax.mail:javax.mail-api:1.6.2'
+    compile 'javax.mail:mail:1.4.7'
+    implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.5.6'
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.2.8.RELEASE'
+
+    testImplementation platform("org.spockframework:spock-bom:1.3-groovy-2.5")
+	testImplementation "org.spockframework:spock-core:1.3-groovy-2.5"
+	testImplementation "org.spockframework:spock-spring:1.3-groovy-2.5"
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+	implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.glassfish.jaxb:jaxb-runtime"
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	implementation "io.jsonwebtoken:jjwt:0.9.1"
+    implementation("org.liquibase:liquibase-core:3.8.0")
+	implementation("io.springfox:springfox-swagger2:2.9.2")
+	implementation("io.springfox:springfox-swagger-ui:2.9.2")
+    compile("commons-validator:commons-validator:1.7")
+
+    compile("net.sf.jasperreports:jasperreports:6.5.1"){
+        exclude group: 'com.lowagie'
+        exclude module: 'olap4j'
+    }
+    compile("com.lowagie:itext:2.1.5")
+}
+
+apply plugin: 'entitygen'
+
+entityGen {
+  configPath = 'src/main/resources/entityGenConfig.yml'
+}
