@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col my-auto">
+                <ng-container *ngIf="mode=='add'">
+                    <h1><i class="icon-file-solid me-2"></i>Add new workGroup</h1>
+                </ng-container>
+                <ng-container *ngIf="mode=='edit'">
+                   <h1><i class="icon-pen-nib-solid me-2"></i>Edit workGroup
+                     <span class="font-weight-bold">{{workGroup?.name}}</span></h1>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form role="form" [formGroup]="workGroupForm">
+              <app-text-input-field  [inputLabel]="'Name'" [formErrors]="formErrors" [controlName]="'name'" [type]="'text'" [form]="workGroupForm" ></app-text-input-field>
+              <app-text-input-field [inputLabel]="'Limit of places'" [formErrors]="formErrors" [controlName]="'limitOfPlaces'" [type]="'number'" [form]="workGroupForm" ></app-text-input-field>
+              <app-text-input-field [inputLabel]="'Monthly cost'" [formErrors]="formErrors" [controlName]="'monthlyCost'" [type]="'number'" [form]="workGroupForm" ></app-text-input-field>
+              <app-text-input-field [inputLabel]="'Starting date'" [formErrors]="formErrors" [controlName]="'startingDate'" [type]="'date'" [form]="workGroupForm" ></app-text-input-field>
+              <app-text-input-field [inputLabel]="'End date'" [formErrors]="formErrors" [controlName]="'endDate'" [type]="'date'" [form]="workGroupForm" ></app-text-input-field>
+              <app-text-input-field [inputLabel]="'Bank account number'" [formErrors]="formErrors" [controlName]="'bankAccountNumber'" [type]="'text'" [form]="workGroupForm" ></app-text-input-field>
+
+              <label for="discipline"class="form-label">Discipline name</label>
+                <select type="text" class="form-control" formControlName="discipline" id="discipline">
+                  <option *ngFor="let disciplineClub of disciplinesClub" [ngValue]="disciplineClub">{{disciplineClub.name}}</option>
+                </select>
+              <label for="locationDto"class="form-label">Location name</label>
+                <select type="text" class="form-control" formControlName="locationDto" id="locationDto">
+                  <option *ngFor="let clubLocation of locationsClub" [ngValue]="clubLocation">{{clubLocation.street}}</option>
+                </select>
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <button class="btn btn-primary" (click)="cancel()"><i class="icon-times-circle-solid me-2"></i>Cancel</button>
+                <button class="btn btn-primary ms-2" (click)="save()"><i class="icon-save-solid me-2"></i>Save</button>
+            </div>
+        </div>
+    </div>
+</div>

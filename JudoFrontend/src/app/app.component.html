@@ -1,0 +1,68 @@
+<div class="overlay" id="kreciola" *ngIf="app.waiting">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="container-xxl d-print-none" role="heading">
+  <div class="row mb-3">
+    <div class="col">club logo
+    </div>
+    <div class="col-auto"><img src="assets/img/R.png" alt="club logo" width="80" height="40">
+    </div>
+  </div>
+</div>
+
+<div class="container-xxl d-print-none">
+
+      <div class="d-flex justify-content-end">
+
+        <div class="align-self-center" *ngIf="(app.authenticated$ | async)">
+          <span class="zalogowany">LOGGED<i class="icon-user-circle mx-2"></i>{{app.claims['sub']}}</span>
+        </div>
+        <button type="button" class="btn btn-link btn-link-wcag me-4" title="Zmień kontrast" (click)="toggleContrast()"><span class="icon-contrast" ></span></button>
+        <button type="button" class="btn btn-link btn-link-wcag" title="Powiększ czcionkę" (click)="increase()"><span class="icon-font-up"></span></button>
+        <button type="button" class="btn btn-link btn-link-wcag" title="Domyślna wielkość czcionki" (click)="resetFontSize()"><span class="icon-font-normal"></span></button>
+        <button type="button" class="btn btn-link btn-link-wcag" title="Zmniejsz czcionkę" (click)="decrease()"><span class="icon-font-dn"></span></button>
+    </div>
+
+</div>
+
+
+<div class="container-xxl d-print-none mb-3">
+
+<ul ngbNav class="nav-tabs">
+  <ng-container *ngFor="let page of pages">
+  <li [ngbNavItem]="'/page/'+page.pageStaticId"><a [routerLinkActive]="['active']"   ngbNavLink routerLink="/page/{{page.pageStaticId}}">{{page.title}}</a></li>
+</ng-container>
+  <li [ngbNavItem]="'/register'" *ngIf="! (app.authenticated$ | async)"><a ngbNavLink routerLink="/register" [routerLinkActive]="['active']">Sign up</a></li>
+
+  <div ngbNavItem ngbDropdown [routerLinkActive]="['active']" #dropdownBackoffice="routerLinkActive" *ngIf="app.claims['ROLE_o']">
+    <button class="nav-link" id="dropdownBackoffice" ngbDropdownToggle [ngClass]="{'active': dropdownBackoffice.isActive}">Back-office</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBackoffice">
+<!--      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/user" [ngbNavItem]="'/user'" ngbDropdownItem>Administrators</button>-->
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/club" [ngbNavItem]="'/club'" ngbDropdownItem>Clubs</button>
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/discipline" [ngbNavItem]="'/discipline '" ngbDropdownItem>Disciplines</button>
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/location" [ngbNavItem]="'/location'" ngbDropdownItem>Locations</button>
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/backoffice-pages" [ngbNavItem]="'/backoffice-pages'" ngbDropdownItem>Information pages</button>
+    </div>
+  </div>
+
+  <div ngbNavItem ngbDropdown [routerLinkActive]="['active']" #dropdownAdmin="routerLinkActive" *ngIf="app.claims['ROLE_a']">
+    <button class="nav-link" id="dropdownAdmin" ngbDropdownToggle [ngClass]="{'active': dropdownAdmin.isActive}">Admin</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownAdmin">
+      <!--      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/user" [ngbNavItem]="'/user'" ngbDropdownItem>Administrators</button>-->
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/club" [ngbNavItem]="'/club'" ngbDropdownItem>Clubs</button>
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/discipline" [ngbNavItem]="'/discipline '" ngbDropdownItem>Disciplines</button>
+      <button [routerLinkActive]="['active']" ngbNavLink routerLink="/location" [ngbNavItem]="'/location'" ngbDropdownItem>Locations</button>
+
+    </div>
+  </div>
+
+  <li [ngbNavItem]="'/login'" *ngIf="! (app.authenticated$ | async)"><a [routerLinkActive]="['active']" ngbNavLink routerLink="/login">Log in</a></li>
+  <li ngbNavItem *ngIf="(app.authenticated$ | async)"><a ngbNavLink  (click)="logout()">Logout</a></li>
+</ul>
+</div>
+<div class="container-xxl" id="mainContainer" role="main">
+<router-outlet></router-outlet>
+</div>

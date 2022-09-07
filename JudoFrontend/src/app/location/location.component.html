@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col my-auto">
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form role="form" [formGroup]="locationForm">
+            <app-text-input-field [inputLabel]="'Street'" [formErrors]="formErrors" [controlName]="'street'" [type]="'text'" [form]="locationForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'HouseNumber'" [formErrors]="formErrors" [controlName]="'houseNumber'" [type]="'text'" [form]="locationForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'City'" [formErrors]="formErrors" [controlName]="'city'" [type]="'text'" [form]="locationForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'Postcode'" [formErrors]="formErrors" [controlName]="'postcode'" [type]="'text'" [form]="locationForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'Description'" [formErrors]="formErrors" [controlName]="'description'" [type]="'text'" [form]="locationForm" ></app-text-input-field>
+
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-center">
+              <div class="col-auto">
+                    <button class="btn btn-primary" (click)="cancel()"><i class="icon-times-circle-solid me-2"></i>Cancel</button>
+                    <button class="btn btn-primary ms-2" (click)="save()"><i class="icon-save-solid me-2"></i>Save</button>
+              </div>
+        </div>
+    </div>
+</div>

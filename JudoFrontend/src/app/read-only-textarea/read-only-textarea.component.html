@@ -1,0 +1,13 @@
+<div class="row mt-2">
+    <div class="col-3 my-auto text-end"><label class="form-label mb-0" for="textareaROId{{id}}">{{inputLabel}}</label></div>
+    <div class="col">
+        <div class="input-group">
+            <textarea  autosize  readonly [value]="text" class="form-control"  id="textareaROId{{id}}" tabindex="-1"></textarea>
+            <span class="icon-lock-solid input-group-text"></span>
+            <ng-content></ng-content>
+        </div>
+    </div>
+    <!--
+    <div class="col-auto"></div>
+    -->
+</div>

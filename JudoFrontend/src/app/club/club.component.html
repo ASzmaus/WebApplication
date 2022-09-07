@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col my-auto">
+        <ng-container *ngIf="mode=='add'">
+          <h1><i class="icon-file-solid me-2"></i>Add new club</h1>
+        </ng-container>
+        <ng-container *ngIf="mode=='edit'">
+          <h1><i class="icon-pen-nib-solid me-2"></i>Edit club <span class="font-weight-bold">{{club?.name}}</span></h1>
+        </ng-container>
+        <ng-container *ngIf="mode=='get'">
+          <h1><i class="icon-pen-nib-solid me-2"></i>View club <span class="font-weight-bold">{{club?.name}}</span></h1>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" *ngIf="mode=='add'|| mode=='edit'">
+    <form role="form" [formGroup]="clubForm">
+      <app-text-input-field [inputLabel]="'Name'" [formErrors]="formErrors" [controlName]="'name'" [type]="'text'" [form]="clubForm" ></app-text-input-field>
+      <app-text-input-field [inputLabel]="'Domain'" [formErrors]="formErrors" [controlName]="'domain'" [type]="'text'" [form]="clubForm" ></app-text-input-field>
+      <app-textarea-field  [inputLabel]="'PhoneNumber'" [formErrors]="formErrors" [controlName]="'phoneNumber'" [form]="clubForm" ></app-textarea-field>
+      <app-text-input-field [inputLabel]="'AddressEmail'" [formErrors]="formErrors" [controlName]="'addressEmail'" [type]="'text'" [form]="clubForm"></app-text-input-field>
+    </form>
+  </div>
+
+  <div class="card-body" *ngIf="mode=='get'">
+    <form role="form" [formGroup]="clubForm">
+      <fieldset disabled="disabled">
+        <app-text-input-field [inputLabel]="'Name'" [formErrors]="formErrors" [controlName]="'name'" [type]="'text'" [form]="clubForm"></app-text-input-field>
+        <app-text-input-field [inputLabel]="'Domain'" [formErrors]="formErrors" [controlName]="'domain'" [type]="'text'" [form]="clubForm"></app-text-input-field>
+        <app-text-input-field [inputLabel]="'PhoneNumber'" [formErrors]="formErrors" [controlName]="'phoneNumber'" [form]="clubForm"></app-text-input-field>
+        <app-text-input-field [inputLabel]="'AddressEmail'" [formErrors]="formErrors" [controlName]="'addressEmail'" [type]="'text'" [form]="clubForm"></app-text-input-field>
+      </fieldset>
+    </form>
+  </div>
+  <div class="card-footer"  *ngIf="mode=='add'|| mode=='edit'">
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <button class="btn btn-primary" (click)="cancel()"><i class="icon-times-circle-solid me-2"></i>Cancel</button>
+        <button class="btn btn-primary ms-2" (click)="save()"><i class="icon-save-solid me-2"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer" *ngIf="mode=='get'">
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <button class="nav-link" [routerLinkActive]="['active']"  routerLink="/club/{{club?.clubId}}/discipline" class="btn btn-primary ms-2"><i class="icon-eye-regular me-2"></i>Disciplines</button>
+        <button class="nav-link" *ngIf="app.claims['ROLE_o']"  [routerLinkActive]="['active']"  routerLink="/club/{{club?.clubId}}/administrator" class="btn btn-primary ms-2"><i class="icon-pen-nib-solid me-2"></i>Users</button>
+        <button class="nav-link" *ngIf="app.claims['ROLE_a']"  [routerLinkActive]="['active']"  routerLink="/club/{{club?.clubId}}/staff" class="btn btn-primary ms-2"><i class="icon-pen-nib-solid me-2"></i>Staff</button>
+        <button class="nav-link" [routerLinkActive]="['active']"  routerLink="/club/{{club?.clubId}}/location" class="btn btn-primary ms-2"><i class="icon-eye-regular me-2"></i>Locations</button>
+        <button class="nav-link" [routerLinkActive]="['active']"  routerLink="/club/{{club?.clubId}}/workGroup" class="btn btn-primary ms-2"><i class="icon-eye-regular me-2"></i>Work groups</button>
+
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

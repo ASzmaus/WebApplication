@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col my-auto">
+                <ng-container *ngIf="mode=='add'">
+                    <h1><i class="icon-file-solid me-2"></i>Add new page</h1>
+                </ng-container>
+                <ng-container *ngIf="mode=='edit'">
+                   <h1><i class="icon-pen-nib-solid me-2"></i>Edit pages „<span class="font-weight-bold">{{page?.title}}</span>”</h1>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form role="form" [formGroup]="pageForm">
+            <app-text-input-field [inputLabel]="'Inner name'" [formErrors]="formErrors" [controlName]="'innerName'" [type]="'text'" [form]="pageForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'Title'" [formErrors]="formErrors" [controlName]="'title'" [type]="'text'" [form]="pageForm" ></app-text-input-field>
+            <app-textarea-field [inputLabel]="'Content'" [formErrors]="formErrors" [controlName]="'content'" [form]="pageForm" ></app-textarea-field>
+            <app-text-input-field [inputLabel]="'Sequence'" [formErrors]="formErrors" [controlName]="'sequence'" [type]="'text'" [form]="pageForm" ></app-text-input-field>
+            <div class="row mt-2">
+                <div class="col offset-3">
+              <div class="form-check">
+                <input  formControlName="display" type="checkbox" class="form-check-input" id="display" />
+                <label class="form-check-label" for="display">Display</label>
+              </div>
+    </div></div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <button class="btn btn-primary" (click)="cancel()"><i class="icon-times-circle-solid me-2"></i>Cancel</button>
+                <button class="btn btn-primary ms-2" (click)="save()"><i class="icon-save-solid me-2"></i>Save</button>
+            </div>
+        </div>
+    </div>
+</div>

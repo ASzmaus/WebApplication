@@ -1,0 +1,13 @@
+<div [formGroup]="form" class="row mt-2">
+  <div class="col-3 my-auto text-end"><label class="form-label mb-0" for="textId{{id}}">{{inputLabel}}</label></div>
+  <div class="col-9"><input [formControlName]="controlName" [type]="type" class="form-control" id="textId{{id}}"/></div>
+</div>
+
+<div *ngFor="let error of formErrors[fullControlName!=null ? fullControlName : controlName]" class="row mt-2">
+  <div class="col">
+    <div class="alert alert-danger">
+      {{error}}
+    </div>
+  </div>
+</div>
+    

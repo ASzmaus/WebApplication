@@ -1,0 +1,20 @@
+<div class="card my-3">
+  <div class="card-header">
+    <h1 class="tagged"><i class="icon-bookmark-solid"></i>Registration</h1>
+  </div>
+  <div class="card-body">
+    <form role="form" (submit)="register()" [formGroup]="registerForm">
+
+      <app-text-input-field [inputLabel]="'Login (e-mail address)'" [formErrors]="formErrors" [controlName]="'email'" [type]="'text'" [form]="registerForm" ></app-text-input-field>
+      <app-text-input-field [inputLabel]="'Password'" [formErrors]="formErrors" [controlName]="'password'" [type]="'password'" [form]="registerForm" ></app-text-input-field>
+      <app-text-input-field [inputLabel]="'Confirm password'" [formErrors]="formErrors" [controlName]="'confirmPassword'" [type]="'password'" [form]="registerForm" ></app-text-input-field>
+
+      <div class="row mt-3 justify-content-center">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()"><span class="icon-user-edit-solid me-2"></span>Sign up</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
