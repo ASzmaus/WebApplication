@@ -1,0 +1,31 @@
+<div class="card d-print-none my-3">
+    <div class="card-header">
+        <h1 class="tagged"><i class="icon-bookmark-solid"></i>Locations in Club</h1>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Discipline name</th>
+                      <th class="text-center lastcol">Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let clubLocation of locationsClub">
+                      <td>{{clubLocation.street}}</td>
+                        <td class="lastcol">
+                            <button (click)="delete(clubLocation.clubId,clubLocation.locationId)" class="btn btn-primary ms-2"><i class="icon-times-circle-solid me-2"></i>Delete </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row me-2 justify-content-center">
+            <div class="col-auto">
+                              <button class="btn btn-primary" (click)="add()"><i class="icon-file-solid me-2"></i>Add location from list in club</button>
+            </div>
+        </div>
+    </div>
+</div>

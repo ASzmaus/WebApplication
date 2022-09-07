@@ -1,0 +1,39 @@
+<div class="card d-print-none my-3">
+    <div class="card-header">
+        <h1 *ngIf="app.claims['ROLE_o']" class="tagged"><i class="icon-bookmark-solid"></i>Admins list  back-office</h1>
+      <h1 *ngIf="app.claims['ROLE_a']" class="tagged"><i class="icon-bookmark-solid"></i>Staff list </h1>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th class="text-center lastcol">Operation </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user?.email}}</td>
+                        <td class="lastcol">
+
+                            <button class="btn btn-primary" (click)="edit(user?.clubId,user?.userId)"><i class="icon-pen-nib-solid me-2"></i>Edit</button>
+                            <button (click)="delete(user?.userId)" class="btn btn-primary ms-2"><i class="icon-times-circle-solid me-2"></i>Delete</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row me-2 justify-content-center">
+            <div class="col-auto">
+
+              <button class="btn btn-primary" (click)="add()"><i class="icon-file-solid me-2"></i>Add new users </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
+`

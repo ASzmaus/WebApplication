@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col my-auto">
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form role="form" [formGroup]="disciplineForm">
+            <app-text-input-field [inputLabel]="'Name'" [formErrors]="formErrors" [controlName]="'name'" [type]="'text'" [form]="disciplineForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'Description'" [formErrors]="formErrors" [controlName]="'description'" [type]="'text'" [form]="disciplineForm" ></app-text-input-field>
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-center">
+        </div>
+    </div>
+</div>

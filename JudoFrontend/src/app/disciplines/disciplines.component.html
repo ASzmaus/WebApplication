@@ -1,0 +1,25 @@
+<div class="card d-print-none my-3">
+    <div class="card-header">
+        <h1 class="tagged"><i class="icon-bookmark-solid"></i>All disciplines</h1>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let discipline of disciplines">
+                        <td>{{discipline.name}}</td>
+                      <td>{{discipline.description}}</td>
+                        <td class="lastcol">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<ng-container [formGroup]="form" >
+    <input [placeholder]="inputLabel" [formControlName]="controlName" [type]="type" [attr.aria-label]="accessibilityLabel"
+                class="form-control" />
+    <div *ngFor="let error of formErrors[fullControlName!=null ? fullControlName : controlName]"
+        class="mx-2 row mt-2">
+    
+      <div class="col">
+        <div class="alert alert-danger">
+          {{error}}
+        </div>
+      </div>
+      </div> 
+ 
+</ng-container>

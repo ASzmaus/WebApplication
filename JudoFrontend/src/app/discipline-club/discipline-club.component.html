@@ -1,0 +1,24 @@
+<form role="form" [formGroup]="disciplineClubForm">
+  <div class="card my-3">
+    <div class="card-header"><h1 class="tagged"><i class="icon-bookmark-solid"></i>Choose discipline</h1></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="discipline"class="form-label">Discipline name</label>
+            <select type="text" class="form-control" formControlName="discipline" id="discipline">
+              <option *ngFor="let discipline of disciplines" [ngValue]="discipline">{{discipline.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4 justify-content-center">
+        <div class="col-auto">
+          <button class="btn btn-primary" (click)="cancel()"><i class="icon-times-circle-solid me-2"></i>Cancel</button>
+          <button class="btn btn-primary ms-2" (click)="save()"><i class="icon-save-solid me-2"></i>Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

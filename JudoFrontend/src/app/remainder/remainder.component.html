@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <h1 class="tagged"><i class="icon-bookmark-solid"></i>Regain access to your account</h1>
+  </div>
+  <div class="card-body">
+    <form role="form" (submit)="remainder()" [formGroup]="remainderForm">
+      <app-text-input-field [inputLabel]="'Login (e-mail address)'" [formErrors]="formErrors" [controlName]="'email'" [type]="'text'" [form]="remainderForm" ></app-text-input-field>
+
+      <div class="row mt-3 justify-content-center">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Regain access</button>
+        </div>
+     </div>
+    </form>
+  </div>
+</div>

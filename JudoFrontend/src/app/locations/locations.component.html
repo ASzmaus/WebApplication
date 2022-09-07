@@ -1,0 +1,38 @@
+<div class="card d-print-none my-3">
+    <div class="card-header">
+        <h1 class="tagged"><i class="icon-bookmark-solid"></i>All locations</h1>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Street</th>
+                        <th>House number</th>
+                        <th>City</th>
+                        <th>Postcode</th>
+                        <th>Desctription</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let location of locations">
+                        <td>{{location.street}}</td>
+                      <td>{{location.houseNumber}}</td>
+                      <td>{{location.city}}</td>
+                      <td>{{location.postcode}}</td>
+                      <td>{{location.description}}</td>
+                        <td class="lastcol">
+                            <button class="btn btn-primary" (click)="edit(location.locationId)"><i class="icon-pen-nib-solid me-2"></i>Edit location</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row me-2 justify-content-center">
+            <div class="col-auto">
+                <button class="btn btn-primary" (click)="add()"><i class="icon-file-solid me-2"></i>New location</button>
+            </div>
+        </div>
+    </div>
+</div>

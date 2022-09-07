@@ -1,0 +1,26 @@
+<div class="card my-3">
+    <div class="card-header"><h1 class="tagged"><i class="icon-bookmark-solid"></i>Login</h1></div>
+    <div class="card-body">
+        <div class="row col-12 alert alert-danger" *ngIf="app.wrongCredentials">
+          Invalid login and/or password
+        </div>
+        <form *ngIf="loginForm" role="form" (submit)="login()" [formGroup]="loginForm">
+
+            <app-text-input-field [inputLabel]="'Login'" [formErrors]="formErrors" [controlName]="'username'" [type]="'text'" [form]="loginForm" ></app-text-input-field>
+            <app-text-input-field [inputLabel]="'Password'" [formErrors]="formErrors" [controlName]="'password'" [type]="'password'" [form]="loginForm" ></app-text-input-field>
+
+            <div class="row mt-2">
+                <div class="col-3"></div>
+                <div class="col">
+                    <a routerLink="/remainder" [fragment]="'/remainder'" >I forgot my password</a>
+                </div>
+            </div>
+
+            <div class="row mt-3 justify-content-center">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" (click)="onSubmit()"><i class="icon-sign-in-alt-solid me-2"></i>Log in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

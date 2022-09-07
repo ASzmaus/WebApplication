@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col my-auto">
+                <ng-container *ngIf="mode=='add'">
+                    <h1><i class="icon-file-solid me-2"></i>Add new user</h1>
+                </ng-container>
+                <ng-container *ngIf="mode=='edit'">
+                   <h1><i class="icon-pen-nib-solid me-2"></i>Edit user
+                     <span class="font-weight-bold">{{user?.email}}</span></h1>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form role="form" [formGroup]="userForm">
+              <app-text-input-field  [inputLabel]="'Login (e-mail address)'" [formErrors]="formErrors" [controlName]="'email'" [type]="'text'" [form]="userForm" ></app-text-input-field>
+              <app-text-input-field [inputLabel]="'Password'" [formErrors]="formErrors" [controlName]="'password'" [type]="'password'" [form]="userForm" ></app-text-input-field>
+      <app-text-input-field [inputLabel]="'Confirm password'" [formErrors]="formErrors" [controlName]="'confirmPassword'" [type]="'password'" [form]="userForm" ></app-text-input-field>
+      </form>
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <button class="btn btn-primary" (click)="cancel()"><i class="icon-times-circle-solid me-2"></i>Cancel</button>
+                <button class="btn btn-primary ms-2" (click)="save()"><i class="icon-save-solid me-2"></i>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
