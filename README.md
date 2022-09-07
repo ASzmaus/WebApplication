@@ -12,4 +12,4 @@ Determining the payment scheme for the group and using the job scheduler will be
 
 Access to the system will be through a responsive website, possibly a simple application.
 
-System use the following technologies: Java 8, Spring Boot, Spring Data, Lombok, PostgreSQL, Liquibase, Hibernate, GitLab, CI REST API, Groovy, Spock, Unit, integration, contract tests, IntelliJ IDEA, RabbitMQ, Jasper Report, Docker, Ubuntu, Angular, HTML, CSS, TypeScript.
+System use the following technologies: Java 8, Spring Boot, Spring Data, Lombok, PostgreSQL, Liquibase, Hibernate, GitLab, CI REST API, Groovy, Spock, Unit, integration, contract tests, IntelliJ IDEA, RabbitMQ, Jasper Report, Docker, Ubuntu, Angular, HTML, SCSS, TypeScript.
